@@ -120,7 +120,12 @@ int main(int argc, char *argv[]) {
             {
                 printf("fputs() error");
             }
+            if(n < MAX_SEND_RECV) // finished reciving
+            {
+                break;
+            }
         }
+
     }
     printf("Exiting now.\n");
     free(pathChar);

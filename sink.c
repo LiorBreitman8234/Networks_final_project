@@ -13,6 +13,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <arpa/inet.h>
+#define PORT 9999
 void printsin(struct sockaddr_in *s, char *str1, char *str2) {
     printf("%s\n", str1);
     printf("%s: ", str2);
@@ -36,15 +37,20 @@ int main(int argc, char* argv[])
     struct sockaddr_in listen,recv;
     struct {u_long num;}msg;
     int sockFD = socket(AF_INET,SOCK_DGRAM,0);//create udp socket
-
+    int port = 0;
+    if(argc != 2)
+    {
+        port = PORT;
+    }
+    else
+    {
+        port = strtol(argv[1],NULL,10);
+    }
     bzero((char *)&listen,sizeof(listen));//reset memory in the address of the socket
 
     listen.sin_family = (short)AF_INET;// IP + port
     listen.sin_addr.s_addr = htonl(INADDR_ANY);//recives from every internal interface
-    listen.sin_port = htons(((u_short)0x3334));//set port
-
-    printsin( &listen, "RECV_UDP", "Local socket is:");
-    fflush(stdout);//writes to or updates the standard output
+    listen.sin_port = port+1;//set port
 
     bind(sockFD, (struct sockaddr* )&listen ,sizeof(listen));// bind socket and address
     int counter = 0;// count how many messegas got
