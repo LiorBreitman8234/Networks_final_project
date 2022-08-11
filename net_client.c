@@ -13,7 +13,7 @@
 
 #define SIM_LENGTH 10
 #define IP_ADDRESS "127.0.0.1"
-#define PORT 10000
+#define PORT 9999
 
 int main(int argc, char *argv[]) {
     int sock;
@@ -49,8 +49,7 @@ int main(int argc, char *argv[]) {
     bzero(&cli_name, sizeof(cli_name));
     cli_name.sin_family = AF_INET;
     cli_name.sin_addr.s_addr = inet_addr(ip_address);//need to write the right IP address
-    cli_name.sin_port = htons(
-            PORT);//need to check that PORT between server and client match, otherwise connection refused
+    cli_name.sin_port = htons(PORT);//need to check that PORT between server and client match, otherwise connection refused
 
 
     if (connect(sock, (struct sockaddr *) &cli_name, sizeof(cli_name)) < 0)//trying to connect to a socket

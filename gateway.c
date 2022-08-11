@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
     listen.sin_port = port;
     listen.sin_addr.s_addr = htonl(INADDR_ANY);//recives from every internal interface
     printf("port for listening %d\n",listen.sin_port);
-    srandom(12345);
+    srandom(7846985);
 
     bind(sock_recv,(struct sockaddr *)&listen,sizeof(listen));//bind socket and address to listen
     for(;;)

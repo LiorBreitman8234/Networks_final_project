@@ -37,8 +37,10 @@ int main(int argc, char * argv[])
     dest.sin_family = AF_INET;
     dest.sin_port = port;
     bcopy(hostnet->h_addr, (char *)&dest.sin_addr,hostnet->h_length);
+
     printf("sending on port %d\n",port);
     u_long start = 1;
+
     for(;;)
     {
         msg.num = start;

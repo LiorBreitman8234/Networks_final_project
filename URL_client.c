@@ -57,9 +57,9 @@ int main(int argc, char *argv[]) {
         }
         portChar[portCount + 7] = '\0';
         port = strtol(portChar, NULL, 10);//parsing port to number
+        printf("port: %d\n",port);
         free(portChar);
     }
-
     int countPath = 0;
     int current = lastSlash;
     //counting length of path
@@ -80,6 +80,8 @@ int main(int argc, char *argv[]) {
         hostname[i] = url[i + 7];
     }
     hostname[count + 7] = '\0';
+    printf("path :%s\n",pathChar);
+    printf("hostname: %s\n",hostname);
 
     //getting the IP address by the host
     struct hostent *host = gethostbyname(hostname);
@@ -127,7 +129,7 @@ int main(int argc, char *argv[]) {
         }
 
     }
-    printf("Exiting now.\n");
+    printf("\nExiting now.\n");
     free(pathChar);
     free(hostname);
     close(sock);
